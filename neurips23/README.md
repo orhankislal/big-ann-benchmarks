@@ -184,6 +184,19 @@ To build your Docker container, run:
 python install.py --neurips23track [task] --algorithm [your_team_name]
 ```
 
+Additionally for streaming/postgres-pg-diskann, you will need to provide MSRUSTUP_PAT, ADO_USERNAME, PG_DISKANN_REPO_PASSWORD and DISKANN_REPO_PASSWORD as build arguments, as in the following example:
+```
+python3 install.py --neurips23track streaming --algorithm postgres-pg-diskann --build-arg \
+MSRUSTUP_PAT=XXX \
+ADO_USERNAME=XXX \
+PG_DISKANN_REPO_PASSWORD=XXX \
+DISKANN_REPO_PASSWORD=XXX
+```
+
+You can create MSRUSTUP_PAT via https://mscodehub.visualstudio.com/_usersSettings/tokens. Note that you need to select Packaging(Read) permission when creating the token.
+
+For PG_DISKANN_REPO_PASSWORD and DISKANN_REPO_PASSWORD, you need to go to the relevant repos to create tokens and then you need to click the buttons in order: Clone -> HTTPS -> Generate Git Credentials.
+
 ### Developing_Your_Algorithm
 
 Develop and add your algorithm's Python class to the `neurips23/[task]/[your_team_name]/` directory.

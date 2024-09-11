@@ -12,6 +12,8 @@ import docker
 import numpy
 import psutil
 
+from datetime import datetime
+
 from benchmark.algorithms.definitions import (Definition,
                                                instantiate_algorithm)
 from benchmark.algorithms.base_runner import BaseRunner
@@ -69,9 +71,9 @@ def run(definition, dataset, count, run_count, rebuild,
         elif rebuild or not algo.load_index(dataset):
             # Build the index if it is not available
             build_time = (custom_runner.build(algo,dataset)
-                          if neurips23track != 'streaming' 
+                          if neurips23track != 'streaming'
                           else custom_runner.build(algo, dataset, max_pts))
-            print('Built index in', build_time) 
+            print('Built index in', build_time)
         else:
             print("Loaded existing index")
 
@@ -290,21 +292,23 @@ def run_docker(definition, dataset, count, runs, timeout, rebuild,
             cpuset_cpus=cpu_limit,
             mem_limit=mem_limit,
             privileged=True, # so that we can run perf inside the container
+            name=f'{definition.docker_tag}-{datetime.now().strftime("%Y%m%d-%H%M%S")}',
             detach=True)
- 
+
+
+    if timeout:
+        print("Requested container timeout is %d seconds" % timeout)
+
     # set/override container timeout based on competition flag
-    if neurips23track!='none':
+    elif neurips23track!='none':
         # 1 hour for streaming and 12 hours for other tracks
         timeout = 60 * 60 if neurips23track == 'streaming' else 12 * 60 * 60
-        print("Setting container wait timeout to %d seconds" % timeout)       
-
-    elif not timeout: 
-        # default to 3 days (includes NeurIPS'21)
-        timeout = 3600*24*3 # 3 days
-        print("Setting container wait timeout to 3 days")       
+        print("Setting container wait timeout to %d seconds" % timeout)
 
     else:
-        print("Requested container timeout is %d seconds" % timeout)
+        # default to 3 days (includes NeurIPS'21)
+        timeout = 3600*24*3 # 3 days
+        print("Setting container wait timeout to 3 days")
 
     logging.config.fileConfig("logging.conf") 
     logger = logging.getLogger(f"annb.{container.short_id}")
@@ -327,7 +331,18 @@ def run_docker(definition, dataset, count, runs, timeout, rebuild,
         logger.error('Invoked with %s' % cmd)
         traceback.print_exc()
     finally:
-        container.remove(force=True)
+        # XXX: Retain the container for debugging purposes
+        if False:
+            container.remove(force=True)
+        else:
+            container.stop()
+            # Then you need to do the following:
+            #   docker commit <container-name> <image-name-you-want-to-use>
+            #   docker run --entrypoint /bin/bash -it <image-name-you-want-to-use>:latest
+            # Then, execute "./start_database.sh" within the container to start the database again.
+            # Then, you can connect to the database using "psql -U postgres" and run queries.
+            pass
+
 
 
 def _handle_container_return_value(return_value, container, logger):
@@ -335,10 +350,10 @@ def _handle_container_return_value(return_value, container, logger):
     if type(return_value) is dict: # The return value from container.wait changes from int to dict in docker 3.0.0
         error_msg = return_value['Error'] if 'Error' in return_value else ""
         exit_code = return_value['StatusCode']
-        msg = base_msg + 'returned exit code %d with message %s' %(exit_code, error_msg)
+        msg = base_msg + ' returned exit code %d with message %s' %(exit_code, error_msg)
     else:
         exit_code = return_value
-        msg = base_msg + 'returned exit code %d' % (exit_code)
+        msg = base_msg + ' returned exit code %d' % (exit_code)
 
     if exit_code not in [0, None]:
         logger.error(colors.color(container.logs().decode(), fg='red'))

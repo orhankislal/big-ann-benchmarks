@@ -1,0 +1,100 @@
+random-xs:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":32, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":50, "query_conns":8}]
+random-xs-clustered:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":32, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":50, "query_conns":8}]
+msspacev-1M:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":50, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":300, "query_conns":16},
+             {"l_value_is":100, "query_conns":16}]
+msturing-1M:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":50, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":300, "query_conns":16},
+             {"l_value_is":100, "query_conns":16}]
+msspacev-10M:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":64, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":100, "query_conns":16}]
+msturing-10M:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":64, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":100, "query_conns":16}]
+msturing-10M-clustered:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":64, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":100, "query_conns":16}]
+msturing-30M-clustered:
+    postgres-pg-diskann:
+      docker-tag: neurips23-streaming-postgres-pg-diskann
+      module: neurips23.streaming.postgres-pg-diskann.wrapper
+      constructor: PostgresPgDiskANN
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"max_neighbors":32, "l_value_ib":50, "insert_conns":16},
+             {"max_neighbors":32, "l_value_ib":70, "insert_conns":16},
+             {"max_neighbors":50, "l_value_ib":50, "insert_conns":16}]
+          query-args: |
+            [{"l_value_is":70, "query_conns":16}]
