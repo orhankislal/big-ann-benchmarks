@@ -38,13 +38,14 @@ RUN echo https://$ADO_USERNAME:$DISKANN_REPO_PASSWORD@msdata.visualstudio.com >>
 RUN chmod 600 ~/.git-credentials
 
 # clone & build pg_diskann
-RUN git clone https://dev.azure.com/msdata/Database%20Systems/_git/orcasql-pg_diskann --branch v0.3.0
+RUN git clone https://dev.azure.com/msdata/Database%20Systems/_git/orcasql-pg_diskann
 WORKDIR /home/app/orcasql-pg_diskann
+RUN git fetch && git checkout v0.3.2
 RUN git submodule update --init --recursive
 # XXX: A bit hacky but let's use the public crate source when building pg_diskann & DiskANN
-RUN sed -i '/\[source\.crates-io\]/d;/replace-with = "DiskANN_Rust_Public"/d' ./vendor/DiskANN/sources/dev/diskann_rust/.cargo/config.toml
+RUN sed -i '/\[source\.crates-io\]/d;/replace-with = "DiskANN_Rust_Public"/d' ./vendor/DiskANN/.cargo/config.toml
 RUN sed -i '/\[source\.crates-io\]/d;/replace-with = "DiskANN_Rust_Public"/d' ./.cargo/config.toml
-RUN . /root/.cargo/env && cargo +ms-stable pgrx install --profile release
+RUN . /root/.cargo/env && cargo +ms-stable pgrx install --profile release --features telemetry-statsd
 WORKDIR /home/app/
 
 # start the database and create pgvector and pg_diskann extensions
