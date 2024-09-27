@@ -5,6 +5,7 @@ import numpy
 import os
 import traceback
 import sys
+import re
 
 from benchmark.plotting.metrics import all_metrics as metrics
 from benchmark.sensors.power_capture import power_capture
@@ -144,6 +145,11 @@ def compute_metrics_all_runs(dataset, dataset_name, res, recompute=False,
             'dataset': dataset if neurips23track != 'streaming' else dataset + '(' + os.path.split(runbook_path)[-1] + ')',
             'count': properties['count'],
         }
+        if algo == "postgres-pg-diskann":
+            for key,value in properties.items():
+                if re.match("step.*time", key):
+                    run_result[key] = value
+
         for name, metric in metrics.items():
             if search_type == "knn" and name == "ap" or\
                 search_type == "range" and name == "k-nn" or\
