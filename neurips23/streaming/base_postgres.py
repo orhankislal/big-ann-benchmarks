@@ -72,7 +72,7 @@ class BaseStreamingANNPostgres(BaseStreamingANN):
         # create the table and index by using a temporary connection
         with psycopg.connect(PG_CONN_STR, autocommit=True) as conn:
             with conn.cursor() as cur:
-                cursor_print_and_execute(cur, f"CREATE TABLE test_tbl (id bigint, vec_col vector({ndim}))")
+                cursor_print_and_execute(cur, f"CREATE TABLE test_tbl (id bigint, vec_col vector({ndim})) WITH (autovacuum_enabled = false)")
                 cursor_print_and_execute(cur, f"CREATE INDEX vec_col_idx ON test_tbl USING {self.pg_index_method} (vec_col {self.ind_op_class}) {index_build_params_clause}")
 
         # required by insert() & delete()
