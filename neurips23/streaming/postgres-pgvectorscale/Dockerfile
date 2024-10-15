@@ -40,10 +40,9 @@ RUN chmod 600 ~/.git-credentials
 #download, build and install pgvectorscale
 RUN cd /tmp
 RUN git clone https://github.com/timescale/pgvectorscale
-WORKDIR /home/app/pgvectorscale
+WORKDIR /home/app/pgvectorscale/pgvectorscale
 RUN git fetch && git checkout 0.4.0
-RUN cd pgvectorscale
-RUN . /root/.cargo/env && cargo pgrx install --release
+RUN . /root/.cargo/env && cargo +ms-stable pgrx install --release
 WORKDIR /home/app/
 
 # start the database and create pgvector and pg_diskann extensions
