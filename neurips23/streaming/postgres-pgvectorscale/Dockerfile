@@ -20,7 +20,7 @@ RUN export MSRUSTUP_PAT=$MSRUSTUP_PAT && ./install_msrustup.sh
 RUN echo | ./msrustup
 
 # install cargo-pgrx
-RUN . /root/.cargo/env && cargo +ms-stable install --locked cargo-pgrx@0.11.4
+RUN . /root/.cargo/env && cargo +ms-stable install --locked cargo-pgrx@0.12.5
 
 # initialize pgrx for pg16
 RUN . /root/.cargo/env && cargo +ms-stable pgrx init --pg16=/usr/bin/pg_config
