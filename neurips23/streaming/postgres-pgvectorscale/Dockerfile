@@ -43,7 +43,7 @@ RUN git clone https://github.com/timescale/pgvectorscale
 WORKDIR /home/app/pgvectorscale
 RUN git fetch && git checkout 0.4.0
 RUN cd pgvectorscale
-RUN cargo pgrx install --release
+RUN . /root/.cargo/env && cargo pgrx install --release
 WORKDIR /home/app/
 
 # start the database and create pgvector and pg_diskann extensions
