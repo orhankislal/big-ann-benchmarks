@@ -20,7 +20,7 @@ RUN export MSRUSTUP_PAT=$MSRUSTUP_PAT && ./install_msrustup.sh
 RUN echo | ./msrustup
 
 # install cargo-pgrx
-RUN . /root/.cargo/env && RUSTFLAGS="-C target-feature=+avx2,+fma" cargo +ms-stable install --locked cargo-pgrx@0.12.5
+RUN . /root/.cargo/env && cargo +ms-stable install --locked cargo-pgrx@0.12.5
 
 # initialize pgrx for pg16
 RUN . /root/.cargo/env && cargo +ms-stable pgrx init --pg16=/usr/bin/pg_config
@@ -42,7 +42,7 @@ RUN cd /tmp
 RUN git clone https://github.com/timescale/pgvectorscale
 WORKDIR /home/app/pgvectorscale/pgvectorscale
 RUN git fetch && git checkout 0.4.0
-RUN . /root/.cargo/env && cargo +ms-stable pgrx install --release
+RUN . /root/.cargo/env && RUSTFLAGS="-C target-feature=+avx2,+fma" cargo +ms-stable pgrx install --release
 WORKDIR /home/app/
 
 # start the database and create pgvector and pg_diskann extensions
