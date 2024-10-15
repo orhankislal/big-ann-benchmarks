@@ -1,0 +1,100 @@
+random-xs:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":32, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":50, "query_conns":8}]
+random-xs-clustered:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":32, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":50, "query_conns":8}]
+msspacev-1M:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":50, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":300, "query_conns":16},
+             {"query_search_list_size":100, "query_conns":16}]
+msturing-1M:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":50, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":300, "query_conns":16},
+             {"query_search_list_size":100, "query_conns":16}]
+msspacev-10M:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":64, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":100, "query_conns":16}]
+msturing-10M:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":64, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":100, "query_conns":16}]
+msturing-10M-clustered:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":64, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":100, "query_conns":16}]
+msturing-30M-clustered:
+    postgres-pg-vectorscale:
+      docker-tag: neurips23-streaming-postgres-pg-vectorscale
+      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+      constructor: PostgresPgVectorscale
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"num_neighbors":32, "search_list_size":50, "insert_conns":16},
+             {"num_neighbors":32, "search_list_size":70, "insert_conns":16},
+             {"num_neighbors":50, "search_list_size":50, "insert_conns":16}]
+          query-args: |
+            [{"query_search_list_size":70, "query_conns":16}]
