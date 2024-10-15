@@ -11,7 +11,7 @@ ARG MSRUSTUP_PAT
 
 # install msrustup
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt install -y ca-certificates curl jq lldb unzip
+    DEBIAN_FRONTEND=noninteractive apt install -y ca-certificates curl jq lldb unzip libssl-dev
 COPY ./neurips23/streaming/postgres-pg-diskann/install_msrustup.sh install_msrustup.sh
 RUN chmod +x install_msrustup.sh
 RUN export MSRUSTUP_PAT=$MSRUSTUP_PAT && ./install_msrustup.sh
