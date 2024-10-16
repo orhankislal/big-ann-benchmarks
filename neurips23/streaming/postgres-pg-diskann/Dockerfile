@@ -40,7 +40,7 @@ RUN chmod 600 ~/.git-credentials
 # clone & build pg_diskann
 RUN git clone https://dev.azure.com/msdata/Database%20Systems/_git/orcasql-pg_diskann
 WORKDIR /home/app/orcasql-pg_diskann
-RUN git fetch && git checkout v0.3.2
+RUN git fetch && git checkout 1a7fb0d9a6a331fdb153841adf68882115c8c1c3
 RUN git submodule update --init --recursive
 # XXX: A bit hacky but let's use the public crate source when building pg_diskann & DiskANN
 RUN sed -i '/\[source\.crates-io\]/d;/replace-with = "DiskANN_Rust_Public"/d' ./vendor/DiskANN/.cargo/config.toml
