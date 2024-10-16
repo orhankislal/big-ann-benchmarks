@@ -1,7 +1,7 @@
 random-xs:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -11,9 +11,9 @@ random-xs:
           query-args: |
             [{"query_search_list_size":50, "query_conns":8}]
 random-xs-clustered:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -23,9 +23,9 @@ random-xs-clustered:
           query-args: |
             [{"query_search_list_size":50, "query_conns":8}]
 msspacev-1M:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -36,9 +36,9 @@ msspacev-1M:
             [{"query_search_list_size":300, "query_conns":16},
              {"query_search_list_size":100, "query_conns":16}]
 msturing-1M:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -49,9 +49,9 @@ msturing-1M:
             [{"query_search_list_size":300, "query_conns":16},
              {"query_search_list_size":100, "query_conns":16}]
 msspacev-10M:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -61,9 +61,9 @@ msspacev-10M:
           query-args: |
             [{"query_search_list_size":100, "query_conns":16}]
 msturing-10M:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -73,9 +73,9 @@ msturing-10M:
           query-args: |
             [{"query_search_list_size":100, "query_conns":16}]
 msturing-10M-clustered:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
@@ -85,9 +85,9 @@ msturing-10M-clustered:
           query-args: |
             [{"query_search_list_size":100, "query_conns":16}]
 msturing-30M-clustered:
-    postgres-pg-vectorscale:
-      docker-tag: neurips23-streaming-postgres-pg-vectorscale
-      module: neurips23.streaming.postgres-pg-vectorscale.wrapper
+    postgres-pgvectorscale:
+      docker-tag: neurips23-streaming-postgres-pgvectorscale
+      module: neurips23.streaming.postgres-pgvectorscale.wrapper
       constructor: PostgresPgVectorscale
       base-args: ["@metric"]
       run-groups:
