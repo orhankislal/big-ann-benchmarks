@@ -44,12 +44,12 @@ msturing-1M:
       run-groups:
         base:
           args: |
-            [{"m":25, "ef_construction":64, "insert_conns":16}]
+            [{"m":25, "ef_construction":64, "insert_conns":1}]
           query-args: |
-            [{"ef_search":500, "query_conns":16},
-             {"ef_search":300, "query_conns":16},
-             {"ef_search":100, "query_conns":16},
-             {"ef_search":20, "query_conns":16}]
+            [{"ef_search":500, "query_conns":1},
+             {"ef_search":300, "query_conns":1},
+             {"ef_search":100, "query_conns":1},
+             {"ef_search":20, "query_conns":1}]
 msspacev-10M:
     postgres-pgvector-hnsw:
       docker-tag: neurips23-streaming-postgres-pgvector-hnsw

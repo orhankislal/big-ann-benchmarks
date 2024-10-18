@@ -44,12 +44,12 @@ msturing-1M:
       run-groups:
         base:
           args: |
-            [{"max_neighbors":50, "l_value_ib":50, "insert_conns":16}]
+            [{"max_neighbors":50, "l_value_ib":50, "insert_conns":1}]
           query-args: |
-            [{"l_value_is":500, "query_conns":16},
-             {"l_value_is":300, "query_conns":16},
-             {"l_value_is":100, "query_conns":16},
-             {"l_value_is":20, "query_conns":16}]
+            [{"l_value_is":500, "query_conns":1},
+             {"l_value_is":300, "query_conns":1},
+             {"l_value_is":100, "query_conns":1},
+             {"l_value_is":20, "query_conns":1}]
 msspacev-10M:
     postgres-pg-diskann:
       docker-tag: neurips23-streaming-postgres-pg-diskann
